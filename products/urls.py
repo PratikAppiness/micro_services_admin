@@ -15,17 +15,10 @@ Including another URLconf
 """
 from django.urls import path
 
-from products.views import ProductApi, UserApi
+from products.views import ProductApi, ProductApiSingle, UserApi
 
 urlpatterns = [
-    path('products',ProductApi.as_view({
-        'get': 'list',
-        'post': 'create',
-    })),
-    path('products/<str:pk>',ProductApi.as_view({
-        'get': 'retrive',
-        'put': 'update',
-        'delete': 'destroy',
-    })),
+    path('products',ProductApi.as_view()),
+    path('products/<str:pk>',ProductApiSingle.as_view()),
     path('user', UserApi.as_view()),
 ]
